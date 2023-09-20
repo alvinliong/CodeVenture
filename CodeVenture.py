@@ -3,7 +3,9 @@
 # Enter "pip install art" in terminal first
 import json
 from art import *
-from PIL import Image
+from email.message import EmailMessage
+import ssl
+import smtplib
 class User:
     def __init__(self):
         self.users_db = "users.txt"
@@ -62,7 +64,30 @@ class User:
     def logout(self):
         self.logged_in_user = None
 
-class Homepage:
+    def forgotPassword(self):
+        email_sender = 'codeventure44@gmail.com'
+        password_sender = 'wqij bryl dmjm bzob'
+        email_receiver = input('Please enter email: ')
+        email_receiver = str(email_receiver)
+
+        subject = 'CodeVenture!'
+        body = f'''
+        Your username is ___
+        Your password is ___ 
+        '''
+
+        mail = EmailMessage()
+        mail['From'] = email_sender
+        mail['To'] = email_receiver
+        mail['subject'] = subject
+        mail.set_content(body)
+
+        context = ssl.create_default_context()
+        with smtplib.SMTP_SSL('smtp.gmail.com',465,context=context) as smtp:
+            smtp.login(email_sender, password_sender)
+            smtp.sendmail(email_sender, email_receiver, mail.as_string())        
+
+class Homepage(User):
     def __init__(self, user):
         self.user = user
 
@@ -72,7 +97,8 @@ class Homepage:
             print(Art)
             print("1. Create Account")
             print("2. Login")
-            print("3. Exit")
+            print("3. Forgot details")
+            print("4. Exit")
             choice = input("Enter your choice: ")
 
             if choice == "1":
@@ -80,6 +106,8 @@ class Homepage:
             elif choice == "2":
                 self.login()
             elif choice == "3":
+                self.forgotPassword()
+            elif choice == "4":
                 quit(0)
             else:
                 print("Invalid choice. Please try again.")
