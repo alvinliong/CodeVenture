@@ -195,9 +195,10 @@ def register_main():
                     "Enter your date of birth (DD/MM/YYYY): ")
                 username = input("Enter your chosen username: ")
                 password = input("Enter your chosen password: ")
-                terms_and_conditions = input("Do you accept the terms and conditions (Y\N): ")
+                terms_and_conditions = input(
+                    "Do you accept the terms and conditions (Y or N): ")
 
-                if (terms_and_conditions.lower() != "Y"):
+                if (terms_and_conditions.upper() != "Y"):
                     valid_details = "You must accept the terms and conditions to register!"
 
                 for student in students_database:
@@ -233,7 +234,8 @@ def register_main():
                     "Enter your date of birth (DD/MM/YYYY): ")
                 username = input("Enter your chosen username: ")
                 password = input("Enter your chosen password: ")
-                terms_and_conditions = input("Do you accept the terms and conditions (Y\N): ")
+                terms_and_conditions = input(
+                    "Do you accept the terms and conditions (Y or N): ")
 
                 if (terms_and_conditions.upper() != "Y"):
                     valid_details = "You must accept the terms and conditions to register!"
