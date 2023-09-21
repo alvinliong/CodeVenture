@@ -186,7 +186,6 @@ def register_main():
             print("\n")
             user_input = input("Enter your option: ")
             if user_input == "1":
-                user_type = "student"
                 first_name = input("Enter your first name: ")
                 last_name = input("Enter your last name: ")
                 email = input("Enter your email: ")
@@ -196,6 +195,11 @@ def register_main():
                     "Enter your date of birth (DD/MM/YYYY): ")
                 username = input("Enter your chosen username: ")
                 password = input("Enter your chosen password: ")
+                terms_and_conditions = input("Do you accept the terms and conditions (Y\N): ")
+
+                if (terms_and_conditions.lower() != "Y"):
+                    valid_details = "You must accept the terms and conditions to register!"
+
                 for student in students_database:
                     if (student.get_username() == username or student.get_email() == email):
                         valid_details = "Username or email already exists"
@@ -220,7 +224,6 @@ def register_main():
                     print(valid_details)
 
             elif user_input == "2":
-                user_type = "teacher"
                 first_name = input("Enter your first name: ")
                 last_name = input("Enter your last name: ")
                 email = input("Enter your email: ")
@@ -230,6 +233,11 @@ def register_main():
                     "Enter your date of birth (DD/MM/YYYY): ")
                 username = input("Enter your chosen username: ")
                 password = input("Enter your chosen password: ")
+                terms_and_conditions = input("Do you accept the terms and conditions (Y\N): ")
+
+                if (terms_and_conditions.upper() != "Y"):
+                    valid_details = "You must accept the terms and conditions to register!"
+
                 for student in students_database:
                     if (student.get_username() == username or student.get_email() == email):
                         valid_details = "Username or email already exists"
@@ -272,11 +280,14 @@ def login_main():
     :return: None
     """
     global current_user
+    global current_student_progress
+
+    current_user = None
+    current_student_progress = None
 
     clear_console()
     login_menu()
     while True:
-        user_found = False
         try:
             username = input("Enter your username: ")
             password = input("Enter your password: ")
@@ -284,16 +295,21 @@ def login_main():
             for student in students_database:
                 if (student.get_username() == username and student.get_password() == password):
                     student.set_logged_in()
-                    user_found = True
                     current_user = student
+                    for progress in student_progress_database:
+                        if progress.get_username() == username:
+                            current_student_progress = progress
+                    if current_student_progress == None:
+                        print("Student progress data was not found! Uh oh!")
 
             for teacher in teachers_database:
                 if (teacher.get_username() == username and teacher.get_password() == password):
                     teacher.set_logged_in()
-                    user_found = True
                     current_user = teacher
 
-            if (user_found == True):
+            current_user.set_logged_in()
+
+            if (current_user != None):
                 clear_console()
                 print("Logged in!")
                 if (current_user.get_user_type() == "student"):
@@ -328,9 +344,10 @@ def student_main_menu():
     print("\t1. Start module")
     print("\t2. Unit selection page")
     print("\t3. Attempt quiz")
-    print("\t4. Settings")
-    print("\t5. Q&A Forum")
-    print("\t6. Logout")
+    print("\t4. View my progress")
+    print("\t5. Settings")
+    print("\t6. Q&A Forum")
+    print("\t7. Logout")
     print("\n")
 
 
@@ -357,6 +374,8 @@ def student_main():
         elif menu_input == "5":
             pass
         elif menu_input == "6":
+            pass
+        elif menu_input == "7":
             current_user.set_logged_out()
             print("Logging out!")
             break
@@ -421,7 +440,7 @@ def main():
     :return: None
     """
 
-    # populate user database
+    # populate databases
     read_user_database()
     read_student_progress_database()
 
