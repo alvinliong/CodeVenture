@@ -1,0 +1,22 @@
+[
+    {
+        "first_name": "Alvin",
+        "last_name": "Liong",
+        "email": "alvinlliong@gmail.com",
+        "phone_number": "0414361797",
+        "date_of_birth": "08/06/2004",
+        "username": "alvinl",
+        "password": "password",
+        "user_type": "student"
+    },
+    {
+        "first_name": "Jemima",
+        "last_name": "Larkins",
+        "email": "jemimal@gmail.com",
+        "phone_number": "",
+        "date_of_birth": "16/12/2004",
+        "username": "jemimal",
+        "password": "password",
+        "user_type": "teacher"
+    }
+]

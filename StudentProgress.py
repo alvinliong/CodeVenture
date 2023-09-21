@@ -8,19 +8,19 @@ class StudentProgress:
     This is the class definition for the Student Progress class.
     """
 
-    def __init__(self, username, units_completed, current_unit, modules_completed, current_module, current_quiz):
+    def __init__(self, username, units_completed, current_unit, modules_completed, current_module, quizzes_completed):
         """
         Constructor method for the Student Progress class
         """
-        self.user_id = username
+        self.username = username
         self.units_completed = units_completed
         self.current_unit = current_unit
         self.modules_completed = modules_completed
         self.current_module = current_module
-        self.current_quiz = current_quiz
+        self.quizzes_completed = quizzes_completed
 
-    def get_user_id(self):
-        return self.user_Id
+    def get_username(self):
+        return self.username
 
     def update_units_completed(self, unit):
         self.units_completed.append = unit

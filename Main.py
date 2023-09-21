@@ -2,6 +2,8 @@
 Run this file to start CodeVenture
 """
 
+import json
+
 from User import User
 from Student import Student
 from Teacher import Teacher
@@ -19,21 +21,21 @@ def read_user_database():
 
     students_database = []
     teachers_database = []
-    path = "./data/users.txt"
+    path = "./data/users.json"
 
     try:
         file = open(path, "r", encoding="utf8")
-        lines = list(file)
+        users = json.load(file)
 
-        for line in lines:
-            (user_type,
-             first_name,
-             last_name,
-             email,
-             phone_number,
-             date_of_birth,
-             username,
-             password) = line.strip("\n").split(",")
+        for user in users:
+            user_type = user["user_type"]
+            first_name = user["first_name"]
+            last_name = user["last_name"]
+            email = user["email"]
+            phone_number = user["phone_number"]
+            date_of_birth = user["date_of_birth"]
+            username = user["username"]
+            password = user["password"]
 
             if (user_type == "student"):
                 student = Student(first_name,
@@ -61,13 +63,74 @@ def read_user_database():
         print("The users data file does not exist!")
 
 
-def write_user_database(user_details):
-    path = "./data/users.txt"
-    data_string = ",".join(user_details)
+def write_user_database():
+    path = "./data/users.json"
 
-    file = open(path, "a")
-    file.write("\n" + data_string)
-    file.close()
+    users_database = students_database + teachers_database
+    users_dict = []
+
+    # convert each object in users database to a dictionary, removing last item (logged in status)
+    # and appending them to dictionary of users
+    for user in users_database:
+        user_dict = user.__dict__
+        user_dict.popitem()
+        users_dict.append(user_dict)
+
+    # write to file
+    file = open(path, "w", encoding="utf8")
+    json.dump(users_dict, file, indent=4, separators=(',', ': '))
+
+
+def read_student_progress_database():
+    """
+    Reads the data files and updates the global variables
+    :return: None
+
+    """
+    global student_progress_database
+
+    student_progress_database = []
+    path = "./data/student_progress.json"
+
+    try:
+        file = open(path, "r", encoding="utf8")
+        student_progress = json.load(file)
+
+        for student in student_progress:
+            username = student["username"]
+            units_completed = student["units_completed"]
+            current_unit = student["current_unit"]
+            modules_completed = student["modules_completed"]
+            current_module = student["current_module"]
+            quizzes_completed = student["quizzes_completed"]
+
+            student_progress = StudentProgress(username,
+                                               units_completed,
+                                               current_unit,
+                                               modules_completed,
+                                               current_module,
+                                               quizzes_completed)
+            student_progress_database.append(student_progress)
+
+        file.close()
+    except FileNotFoundError:
+        print("The student progress data file does not exist!")
+
+
+def write_student_progress_database():
+    path = "./data/student_progress.json"
+
+    student_progress_dict = []
+
+    # convert each object in users database to a dictionary
+    # and appending them to dictionary of users
+    for student in student_progress_database:
+        student_dict = student.__dict__
+        student_progress_dict.append(student_dict)
+
+    # write to file
+    file = open(path, "w", encoding="utf8")
+    json.dump(student_progress_dict, file, indent=4, separators=(',', ': '))
 
 
 def clear_console():
@@ -135,12 +198,22 @@ def register_main():
                 password = input("Enter your chosen password: ")
                 for student in students_database:
                     if (student.get_username() == username or student.get_email() == email):
-                        valid_details == "Username or email already exists"
-                if (valid_details):
-                    user_details = [user_type, first_name, last_name,
-                                    email, phone_number, date_of_birth, username, password]
-                    write_user_database(user_details)
+                        valid_details = "Username or email already exists"
+                if (valid_details == True):
+                    new_user = Student(
+                        first_name, last_name, email, phone_number, date_of_birth, username, password)
+                    students_database.append(new_user)
+
+                    write_user_database()
                     read_user_database()
+
+                    new_student_progress = StudentProgress(
+                        username, [], None, [], None, [])
+                    student_progress_database.append(new_student_progress)
+
+                    write_student_progress_database()
+                    read_student_progress_database()
+
                     print("User registered!")
                     break
                 else:
@@ -159,16 +232,19 @@ def register_main():
                 password = input("Enter your chosen password: ")
                 for student in students_database:
                     if (student.get_username() == username or student.get_email() == email):
-                        valid_details == "Username or email already exists"
-                if (valid_details):
-                    user_details = [user_type, first_name, last_name,
-                                    email, phone_number, date_of_birth, username, password]
-                    write_user_database(user_details)
+                        valid_details = "Username or email already exists"
+                if (valid_details == True):
+                    new_user = Teacher(
+                        first_name, last_name, email, phone_number, date_of_birth, username, password)
+                    students_database.append(new_user)
+                    write_user_database()
                     read_user_database()
                     print("User registered!")
                     break
                 else:
+                    print("\n")
                     print(valid_details)
+                    print("\n")
             else:
                 "Please enter a valid option."
         except KeyboardInterrupt:
@@ -223,8 +299,7 @@ def login_main():
                 if (current_user.get_user_type() == "student"):
                     student_main()
                 elif (current_user.get_user_type() == "teacher"):
-                    # teacher_main()
-                    pass
+                    teacher_main()
                 break
 
             else:
@@ -245,8 +320,10 @@ def student_main_menu():
     print("CodeVenture - Student")
     print("=" * 50)
     print("\n")
-    print("Welcome " + current_user.get_first_name() +
+    print("Welcome, " + current_user.get_first_name() +
           " " + current_user.get_last_name())
+    print("User type: " + current_user.get_user_type())
+    print("Username: " + current_user.get_username())
     print("\n")
     print("\t1. Start module")
     print("\t2. Unit selection page")
@@ -289,6 +366,55 @@ def student_main():
                   "Please try again.")
 
 
+def teacher_main_menu():
+    """
+    This function prints the menu for teacher main menu page
+    :return: None
+    """
+    clear_console()
+    print("CodeVenture - Teacher")
+    print("=" * 50)
+    print("\n")
+    print("Welcome, " + current_user.get_first_name() +
+          " " + current_user.get_last_name())
+    print("User type: " + current_user.get_user_type())
+    print("Username: " + current_user.get_username())
+    print("\n")
+    print("\t1. View my students")
+    print("\t2. Settings")
+    print("\t3. Q&A Forum")
+    print("\t4. Logout")
+    print("\n")
+
+
+def teacher_main():
+    """
+    This function runs the main logic for the teacher main menu
+    :return: None
+    """
+
+    clear_console()
+    while True:
+        # Print the menu options
+        teacher_main_menu()
+        menu_input = input("Please enter a menu option: ")
+
+        if menu_input == "1":
+            pass
+        elif menu_input == "2":
+            pass
+        elif menu_input == "3":
+            pass
+        elif menu_input == "4":
+            current_user.set_logged_out()
+            print("Logging out!")
+            break
+        else:
+            # Invalid input option
+            print("You have not selected a valid menu option!",
+                  "Please try again.")
+
+
 def main():
     """
     This function handles all program logic related to the main menu.
@@ -297,9 +423,9 @@ def main():
 
     # populate user database
     read_user_database()
+    read_student_progress_database()
 
     while True:
-        # Print the mode options
         main_menu()
         menu_input = input("Please enter a menu option: ")
 
