@@ -22,9 +22,6 @@ class Student(User):
         super().__init__(first_name, last_name, email, phone_number, username, password, date_of_birth,
                          user_type="student")
 
-    def __str__(self):
-        return self.username
-
 
 if __name__ == "__main__":
     # Feel free to amend this block while working or testing,
