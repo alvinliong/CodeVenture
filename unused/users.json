@@ -1,0 +1,16 @@
+{
+  "Username": {
+    "full_name": "Sithika Mannakkara",
+    "date_of_birth": "10/12/2004",
+    "email": "sithikam@gmail.com",
+    "username": "Username",
+    "password": "Password"
+  },
+  "SithikaMM": {
+    "full_name": "Sithika",
+    "date_of_birth": "10/12/2004",
+    "email": "gmail@gmail.com",
+    "username": "SithikaMM",
+    "password": "SithikaM"
+  }
+}
