@@ -93,7 +93,7 @@ class User:
 
     @staticmethod
     def forgot_details(users_database, email):
-
+        print('Loading...')
         username = None
         password = None
 
@@ -101,7 +101,8 @@ class User:
             if email == user.get_email():
                 username = user.get_username()
                 password = user.get_password()
-
+                first_name = user.get_first_name()
+                last_name = user.get_last_name()
 
         if (username == None) or (password == None):
             print("Email is not registered in CodeVenture!")
@@ -112,13 +113,12 @@ class User:
             password_sender = 'wqij bryl dmjm bzob'
             email_receiver = str(email)
             email_receiver = str(email_receiver)
-
             subject = 'CodeVenture Details'
             body = f'''
-            Hello,
+            Dear {first_name} {last_name},
             Here are your account details. 
-            Your username is {username}
-            Your password is {password}
+            Username: {username}
+            Password: {password}
             Please delete this email once you have your details.
             Kind Regards,
             CodeVenture Team

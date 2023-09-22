@@ -155,7 +155,8 @@ def main_menu():
     print("\n")
     print("\t1. Register")
     print("\t2. Login")
-    print("\t3. Exit")
+    print("\t3. Forgot Details")
+    print("\t4. Exit")
     print("\n")
 
 
@@ -457,7 +458,10 @@ def main():
             register_main()
         elif menu_input == "2":
             login_main()
-        elif menu_input == "3":
+        elif menu_input == "3": # Forgot details
+            email = input('Please enter your email: ')
+            User.forgot_details(users_database,email)
+        elif menu_input == "4":
             print("Exiting CodeVenture")
             break
         else:
