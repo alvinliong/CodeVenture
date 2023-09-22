@@ -2,6 +2,12 @@
 
 """
 
+from email.message import EmailMessage
+import ssl
+import smtplib
+
+global users_database
+
 
 class User:
     """
@@ -84,3 +90,49 @@ class User:
 
     def set_logged_out(self):
         self.is_logged_in = False
+
+    @staticmethod
+    def forgot_details(users_database, email):
+
+        username = None
+        password = None
+
+        for user in users_database:
+            if email == user.get_email():
+                username = user.get_username()
+                password = user.get_password()
+
+
+        if (username == None) or (password == None):
+            print("Email is not registered in CodeVenture!")
+        else:
+
+
+            email_sender = 'codeventure44@gmail.com'
+            password_sender = 'wqij bryl dmjm bzob'
+            email_receiver = str(email)
+            email_receiver = str(email_receiver)
+
+            subject = 'CodeVenture Details'
+            body = f'''
+            Hello,
+            Here are your account details. 
+            Your username is {username}
+            Your password is {password}
+            Please delete this email once you have your details.
+            Kind Regards,
+            CodeVenture Team
+            '''
+
+            mail = EmailMessage()
+            mail['From'] = email_sender
+            mail['To'] = email_receiver
+            mail['subject'] = subject
+            mail.set_content(body)
+
+            context = ssl.create_default_context()
+            with smtplib.SMTP_SSL('smtp.gmail.com', 465, context=context) as smtp:
+                smtp.login(email_sender, password_sender)
+                smtp.sendmail(email_sender, email_receiver, mail.as_string())
+
+
