@@ -18,6 +18,7 @@ def read_user_database():
     """
     global students_database
     global teachers_database
+    global users_database
 
     students_database = []
     teachers_database = []
@@ -57,6 +58,8 @@ def read_user_database():
                 teachers_database.append(teacher)
             else:
                 "User type undefined."
+
+            users_database = teachers_database + students_database
 
         file.close()
     except FileNotFoundError:

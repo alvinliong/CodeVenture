@@ -20,6 +20,16 @@
     "user_type": "student"
   },
   {
+    "first_name": "Teacher",
+    "last_name": "2",
+    "email": "t4eacher@gmail.com",
+    "phone_number": "",
+    "date_of_birth": "08/02/23232",
+    "username": "teacher2",
+    "password": "password",
+    "user_type": "teacher"
+  },
+  {
     "first_name": "Test",
     "last_name": "Teacher",
     "email": "tt@gmail.com",

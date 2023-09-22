@@ -1,11 +1,13 @@
 
-#C:\Users\sithi\OneDrive\Documents\GitHub\CodeVenture
+# C:\Users\sithi\OneDrive\Documents\GitHub\CodeVenture
 # Enter "pip install art" in terminal first
 import json
 from art import *
 from email.message import EmailMessage
 import ssl
 import smtplib
+
+
 class User:
     def __init__(self):
         self.users_db = "users.txt"
@@ -28,7 +30,8 @@ class User:
             print("Username or email already registered. Please choose a different one.")
             return False
 
-        terms_accepted = input("Do you accept the terms and conditions? (yes/no): ").lower()
+        terms_accepted = input(
+            "Do you accept the terms and conditions? (yes/no): ").lower()
         if terms_accepted != "yes":
             print("You must accept the terms and conditions to register.")
             return False
@@ -47,10 +50,10 @@ class User:
         return True
 
     def login(self, username_or_email, password):
-        if (username_or_email=='q') or (password=='q'):
+        if (username_or_email == 'q') or (password == 'q'):
             print('Redirecting to main menu.')
             return False
-        
+
         user_info = self.users_data.get(username_or_email)
 
         if user_info and user_info["password"] == password:
@@ -83,9 +86,10 @@ class User:
         mail.set_content(body)
 
         context = ssl.create_default_context()
-        with smtplib.SMTP_SSL('smtp.gmail.com',465,context=context) as smtp:
+        with smtplib.SMTP_SSL('smtp.gmail.com', 465, context=context) as smtp:
             smtp.login(email_sender, password_sender)
-            smtp.sendmail(email_sender, email_receiver, mail.as_string())        
+            smtp.sendmail(email_sender, email_receiver, mail.as_string())
+
 
 class Homepage(User):
     def __init__(self, user):
@@ -93,7 +97,8 @@ class Homepage(User):
 
     def display_homepage(self):
         while True:
-            Art = text2art("Code Venture",font="bulbhead") # correct --> Art=text2art("test",font="block")
+            # correct --> Art=text2art("test",font="block")
+            Art = text2art("Code Venture", font="bulbhead")
             print(Art)
             print("1. Create Account")
             print("2. Login")
@@ -130,13 +135,14 @@ class Homepage(User):
             quiz_and_test = QuizAndTest(self.user)
             quiz_and_test.display_quiz_menu()
 
+
 class QuizAndTest(User):
     def __init__(self, user):
         self.user = user
         self.questions = [
             {
                 "question": "What is an integer?",
-                "options": ["a. integers store words", "b. integers are whole numbers", "c. integers contain decimal places","a. integers are not in python"],
+                "options": ["a. integers store words", "b. integers are whole numbers", "c. integers contain decimal places", "a. integers are not in python"],
                 "answer": "b"
             },
             {
@@ -151,7 +157,7 @@ class QuizAndTest(User):
             },
             {
                 "question": "What does the 'print' function do in Python?",
-                "options": ["a. Add two numbers", "b. Open a file", "c. Create a folder","d. Display text on the screen"],
+                "options": ["a. Add two numbers", "b. Open a file", "c. Create a folder", "d. Display text on the screen"],
                 "answer": "d"
             },
             {
@@ -160,7 +166,8 @@ class QuizAndTest(User):
                 "answer": "a"
             }
         ]
-    def display_quiz_menu(self):       
+
+    def display_quiz_menu(self):
         if not self.user.logged_in_user:
             print("You must log in to access this class.")
             return
@@ -202,7 +209,8 @@ class QuizAndTest(User):
                 score += 1
 
         grade = (score / total_questions) * 100
-        print(f"\nQuiz Completed!\nYou got {score} out of {total_questions} questions correct.")
+        print(
+            f"\nQuiz Completed!\nYou got {score} out of {total_questions} questions correct.")
         print(f"Your grade: {grade}%")
 
     def take_test(self):
@@ -212,10 +220,7 @@ class QuizAndTest(User):
         pass
 
 
-
-
 if __name__ == "__main__":
     user_manager = User()
     homepage = Homepage(user_manager)
     homepage.display_homepage()
-
