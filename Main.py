@@ -193,10 +193,16 @@ def register_main():
                 first_name = input("Enter your first name: ")
                 last_name = input("Enter your last name: ")
                 email = input("Enter your email: ")
+                if not(User.is_email_valid(email)):
+                    print('Invalid email')
+                    break
                 phone_number = input(
                     "Enter your phone number (optional, press enter to skip): ")
                 date_of_birth = input(
                     "Enter your date of birth (DD/MM/YYYY): ")
+                if not(User.is_DOB_valid(date_of_birth)):
+                    print('Invalid DOB')
+                    break
                 username = input("Enter your chosen username: ")
                 password = input("Enter your chosen password: ")
                 terms_and_conditions = input(
