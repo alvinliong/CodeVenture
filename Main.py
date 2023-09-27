@@ -198,6 +198,9 @@ def register_main():
                     break
                 phone_number = input(
                     "Enter your phone number (optional, press enter to skip): ")
+                if not(User.is_phone_num_valid(phone_number)):
+                    print('Invalid phone number')
+                    break
                 date_of_birth = input(
                     "Enter your date of birth (DD/MM/YYYY): ")
                 if not(User.is_DOB_valid(date_of_birth)):

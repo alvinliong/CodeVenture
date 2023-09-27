@@ -39,8 +39,6 @@ class User:
 
     @staticmethod
     def is_DOB_valid(date_of_birth):
-        # 0 1 2 3 4 5 6 7 8 9
-        # D D / M M / Y Y Y Y
         if not(len(date_of_birth)==10):
             return False
         if (date_of_birth[2]=='/' and date_of_birth[5] == '/'):
@@ -87,10 +85,23 @@ class User:
 
     @staticmethod
     def is_email_valid(email):
-        if '@' in email:
+        if '@' in email and '.' in email:
             return True
         else:
             return False
+    
+    @staticmethod
+    def is_phone_num_valid(phone_number):
+        if phone_number is None:
+            try:
+                int(phone_number)
+                return True
+            except ValueError:
+                return False
+        else:
+            return True
+        
+    
 
     def get_first_name(self):
         return self.first_name
