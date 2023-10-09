@@ -37,6 +37,72 @@ class User:
         self.user_type = user_type
         self.is_logged_in = is_logged_in
 
+    @staticmethod
+    def is_DOB_valid(date_of_birth):
+        if not(len(date_of_birth)==10):
+            return False
+        if (date_of_birth[2]=='/' and date_of_birth[5] == '/'):
+            DD = date_of_birth[0:2]
+            MM = date_of_birth[3:5]
+            YYYY = date_of_birth[6:10]
+            try:
+                YYYY = int(YYYY)
+                if not(1800<YYYY<9999):
+                    return False
+            except ValueError:
+                return False
+            valid_days = []
+            if MM in ['01','03','05','07','08','10','12']:
+                # 31 day month
+                for day in range(1,32):
+                    valid_days.append(str(day).zfill(2))
+                if not(DD in valid_days):
+                    return False
+            elif MM in ['04','06','09','11']:
+                # 30 day month
+                for day in range(1,31):
+                    valid_days.append(str(day).zfill(2))
+                if not(DD in valid_days):
+                    return False
+            elif MM == '02':
+                if YYYY%4 == 0:
+                    # Leap year
+                    for day in range(1, 30):
+                        valid_days.append(str(day).zfill(2))
+                    if not(DD in valid_days):
+                        return False
+                else:
+                    # not leap year
+                    for day in range(1, 29):
+                        valid_days.append(str(day).zfill(2))
+                    if not(DD in valid_days):
+                        return False
+            else:
+                return False
+        else:
+            return False
+        return True
+
+    @staticmethod
+    def is_email_valid(email):
+        if '@' in email and '.' in email:
+            return True
+        else:
+            return False
+    
+    @staticmethod
+    def is_phone_num_valid(phone_number):
+        if phone_number is None:
+            try:
+                int(phone_number)
+                return True
+            except ValueError:
+                return False
+        else:
+            return True
+        
+    
+
     def get_first_name(self):
         return self.first_name
 
@@ -93,7 +159,7 @@ class User:
 
     @staticmethod
     def forgot_details(users_database, email):
-
+        print('Loading...')
         username = None
         password = None
 
@@ -101,7 +167,8 @@ class User:
             if email == user.get_email():
                 username = user.get_username()
                 password = user.get_password()
-
+                first_name = user.get_first_name()
+                last_name = user.get_last_name()
 
         if (username == None) or (password == None):
             print("Email is not registered in CodeVenture!")
@@ -112,13 +179,12 @@ class User:
             password_sender = 'wqij bryl dmjm bzob'
             email_receiver = str(email)
             email_receiver = str(email_receiver)
-
             subject = 'CodeVenture Details'
             body = f'''
-            Hello,
+            Dear {first_name} {last_name},
             Here are your account details. 
-            Your username is {username}
-            Your password is {password}
+            Username: {username}
+            Password: {password}
             Please delete this email once you have your details.
             Kind Regards,
             CodeVenture Team

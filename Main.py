@@ -155,7 +155,8 @@ def main_menu():
     print("\n")
     print("\t1. Register")
     print("\t2. Login")
-    print("\t3. Exit")
+    print("\t3. Forgot Details")
+    print("\t4. Exit")
     print("\n")
 
 
@@ -192,10 +193,19 @@ def register_main():
                 first_name = input("Enter your first name: ")
                 last_name = input("Enter your last name: ")
                 email = input("Enter your email: ")
+                if not(User.is_email_valid(email)):
+                    print('Invalid email')
+                    break
                 phone_number = input(
                     "Enter your phone number (optional, press enter to skip): ")
+                if not(User.is_phone_num_valid(phone_number)):
+                    print('Invalid phone number')
+                    break
                 date_of_birth = input(
                     "Enter your date of birth (DD/MM/YYYY): ")
+                if not(User.is_DOB_valid(date_of_birth)):
+                    print('Invalid DOB')
+                    break
                 username = input("Enter your chosen username: ")
                 password = input("Enter your chosen password: ")
                 terms_and_conditions = input(
@@ -457,7 +467,10 @@ def main():
             register_main()
         elif menu_input == "2":
             login_main()
-        elif menu_input == "3":
+        elif menu_input == "3": # Forgot details
+            email = input('Please enter your email: ')
+            User.forgot_details(users_database,email)
+        elif menu_input == "4":
             print("Exiting CodeVenture")
             break
         else:
