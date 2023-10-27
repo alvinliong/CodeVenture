@@ -6,9 +6,6 @@ from email.message import EmailMessage
 import ssl
 import smtplib
 
-global users_database
-
-
 class User:
     """
     This is the class definition for the User class.
@@ -36,6 +33,7 @@ class User:
         self.password = password
         self.user_type = user_type
         self.is_logged_in = is_logged_in
+
 
     @staticmethod
     def is_DOB_valid(date_of_birth):
