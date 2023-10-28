@@ -20,38 +20,38 @@ class LoginFrame(tk.Frame):
         super().__init__(master=master)
         self.master = master
         self.configure(background="blue")
-        self.grid_rowconfigure(0, weight=1)
-        self.grid_columnconfigure(0, weight=1)
+        self.grid_rowconfigure((0, 1, 2, 3, 4), weight=1)
+        self.grid_columnconfigure((0, 1), weight=1)
 
         # Label containing the welcome heading
         login_title = tk.Label(master=self,
                                text="Code Venture",
                                font=("Arial Bold", 25))
-        login_title.grid(row=1, columnspan=2, padx=10, pady=10, sticky="nsew")
+        login_title.grid(row=0, column=0, columnspan=2, padx=10, pady=10, sticky=tk.EW)
 
         # Label to ask user for Username
         username_label = tk.Label(master=self, text="Username:")
-        username_label.grid(row=2, column=0, sticky=tk.E, padx=10, pady=10)
+        username_label.grid(row=1, column=0, padx=10, pady=10, sticky=tk.E)
 
         # Variable and entry for username
         self.username = tk.StringVar()
         self.username_entry = tk.Entry(master=self, textvariable=self.username)
-        self.username_entry.grid(row=2, column=1, sticky=tk.W, padx=10, pady=10)
+        self.username_entry.grid(row=1, column=1, padx=10, pady=10, sticky=tk.W)
 
         # Label to ask user for Password
         password_label = tk.Label(master=self, text="Password:")
-        password_label.grid(row=3, column=0, sticky=tk.E, padx=10, pady=10)
+        password_label.grid(row=2, column=0, padx=10, pady=10, sticky=tk.E)
 
         # Variable and entry to password
         self.password = tk.StringVar()
         self.password_entry = tk.Entry(master=self, textvariable=self.password,
                                   show="●")
-        self.password_entry.grid(row=3, column=1, sticky=tk.W, padx=10, pady=10)
+        self.password_entry.grid(row=2, column=1, padx=10, pady=10, sticky=tk.W)
 
         # Button to login
         login_button = tk.Button(master=self, text="Login",
                                  command=self.Login)
-        login_button.grid(row=4, columnspan=2, padx=10, pady=10)
+        login_button.grid(row=3, columnspan=2, padx=10, pady=10)
 
         # Variable and label to inform user of login outcome
         self.login_text = tk.StringVar()
@@ -61,7 +61,7 @@ class LoginFrame(tk.Frame):
         # login_message = tk.Message(master=self,
         #                            textvariable=self.login_text,
         #                            width=150)
-        login_message.grid(row=5, columnspan=2, padx=10, pady=10)
+        login_message.grid(row=4, columnspan=2, padx=10, pady=10)
 
     def Login(self):
         """

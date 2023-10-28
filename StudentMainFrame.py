@@ -6,7 +6,7 @@ import tkinter as tk
 
 # Local application imports
 from Database import *
-
+from PyInfoFrame import PyInfoFrame
 
 class StudentMainFrame(tk.Frame):
     """
@@ -36,9 +36,8 @@ class StudentMainFrame(tk.Frame):
         # The calculate BMI button
         # TODO: Include event handling
         calculate_bmi_button = tk.Button(self,
-                                         text="Calculate body mass index "
-                                              "(BMI)",
-                                         command=self.show_bmi_frame)
+                                         text="Python Information",
+                                         command=self.show_py_info)
         calculate_bmi_button.grid(row=2, column=0, padx=10, pady=10)
 
         # The view appointments button
@@ -51,14 +50,13 @@ class StudentMainFrame(tk.Frame):
         logout_button = tk.Button(self, text="Log out", command=self.logout)
         logout_button.grid(row=4, column=0, padx=10, pady=10)
 
-    def show_bmi_frame(self):
+    def show_py_info(self):
         """
-        Event handler to show bmi frame
-        DO NOT MODIFY THIS.
+        Event handler to show py info frame
         """
         self.place_forget()
-        # bmi_frame = Quizframe(self.master, self)
-        # bmi_frame.place(relx=0.5, rely=0.5, anchor=tk.CENTER)
+        py_info_frame = PyInfoFrame(self.master)
+        py_info_frame.place(relx=0.5, rely=0.5, anchor=tk.CENTER)
 
     def logout(self):
         """
