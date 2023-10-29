@@ -1,5 +1,6 @@
 # Third party imports
 import tkinter as tk
+from tkinter import ttk
 
 # Local application imports
 from LoginFrame import LoginFrame
@@ -21,8 +22,12 @@ class MainFrame(tk.Tk):
         self.geometry(f"{width}x{height}")
         self.grid_rowconfigure(0, weight=1)
         self.grid_columnconfigure(0, weight=1)
+        # self.resizable(False,False)
+    
+        style = ttk.Style(self)
+        style.theme_use("aqua")
+        print(ttk.Style().theme_names())
         
-
 if __name__ == "__main__":
     MainFrame = MainFrame("Code Venture")
     LoginFrame = LoginFrame(MainFrame)

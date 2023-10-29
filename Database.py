@@ -9,15 +9,27 @@ import json
 from Student import Student
 from Teacher import Teacher
 from StudentProgress import StudentProgress
+from Unit import Unit
+from Module import Module
 
-def update_all_databases():
+def read_all_databases():
     """
     Runs all read and write functions for the databases. Essentially updates the files
     to match the database changes from the code
     :return: None
     """
     read_user_database()
+    read_modules_database()
+    read_units_database()
     read_student_progress_database()
+
+def write_all_databases():
+    """
+    Runs all read and write functions for the databases. Essentially updates the files
+    to match the database changes from the code
+    :return: None
+    """
+    
     write_student_progress_database()
     write_user_database()
 
@@ -75,6 +87,7 @@ def read_user_database():
             users_database = teachers_database + students_database
 
         file.close()
+        print("Student data loaded.")
     except FileNotFoundError:
         print("The users data file does not exist!")
 
@@ -137,6 +150,7 @@ def read_student_progress_database():
             student_progress_database.append(student_progress)
 
         file.close()
+        print("Student progress data loaded.")
     except FileNotFoundError:
         print("The student progress data file does not exist!")
 
@@ -161,4 +175,66 @@ def write_student_progress_database():
     file = open(path, "w", encoding="utf8")
     json.dump(student_progress_dict, file, indent=4, separators=(',', ': '))
 
-update_all_databases()
+def read_units_database():
+    """
+    Reads the data files and updates the global variables
+    :return: None
+
+    """
+    global units_database
+
+    units_database = []
+    path = "./data/units.json"
+
+    try:
+        file = open(path, "r", encoding="utf8")
+        units = json.load(file)
+
+        for unit in units:
+            unit_title = unit["unit_title"]
+            unit_code = unit["unit_code"]
+            modules = unit["modules"]
+            
+
+            
+            unit = Unit(unit_title,
+                                unit_code,
+                                modules)
+            units_database.append(unit)
+
+        file.close()
+        print("Units data loaded.")
+    except FileNotFoundError:
+        print("The units data file does not exist!")
+
+def read_modules_database():
+    """
+    Reads the data files and updates the global variables
+    :return: None
+
+    """
+    global modules_database
+
+    modules_database = []
+    path = "./data/modules.json"
+
+    try:
+        file = open(path, "r", encoding="utf8")
+        modules = json.load(file)
+
+        for module in modules:
+            module_title = module["module_title"]
+            module_code = module["module_code"]
+            content = module["content"]
+
+            module = Module(module_title,
+                                module_code,
+                                content)
+            modules_database.append(module)
+
+        file.close()
+        print("Modules data loaded.")
+    except FileNotFoundError:
+        print("The modules data file does not exist!")
+
+read_all_databases()

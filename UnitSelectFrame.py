@@ -8,22 +8,19 @@ from tkinter import ttk
 
 # Local application imports
 from Database import *
-from ModuleSelectFrame import ModuleSelectFrame
-from UnitSelectFrame import UnitSelectFrame
 
-
-class StudentMainFrame(tk.Frame):
+class UnitSelectFrame(tk.Frame):
     """
-    The class definition for the StudentMainFrame class.
+    The class definition for the UnitSelectFrame class.
     """
 
-    def __init__(self, master, login_frame, current_user, current_student_progress):
+    def __init__(self, master, student_main_frame, current_user, current_student_progress):
         """
-        The constructor for the StudentMainFrame class
+        The constructor for the UnitSelectFrame class
         """
         super().__init__(master)
         self.master = master
-        self.login_frame = login_frame
+        self.student_main_frame = student_main_frame
         self.current_user = current_user
         self.current_student_progress = current_student_progress
 
@@ -38,18 +35,18 @@ class StudentMainFrame(tk.Frame):
 
         # Label containing the CodeVenture heading
         main_title = ttk.Label(master=self,
-                               text="CodeVenture | Student",
-                               font=("Helvetica Bold", 25))
+                               text="CodeVenture | Unit Select",
+                               font=("Arial Bold", 25))
         main_title.grid(row=0, column=0, columnspan=2, padx=10, pady=10, sticky="W")
 
         # Username heading
         username_title = ttk.Label(master=self,
                                text=f"{current_user.get_first_name()} {current_user.get_last_name()}",
-                               font=("Helvetica Bold", 18))
+                               font=("Arial Bold", 18))
         username_title.grid(row=0, column=1, columnspan=1, padx=10, pady=10, sticky="E")
 
         # The play button
-        play_button = ttk.Button(self, text="PLAY", command=self.play)
+        play_button = ttk.Button(self, text="PLAY")
         play_button.grid(row=1, column=0, padx=10, pady=10, sticky="SE")
 
         # The view progress button
@@ -68,17 +65,6 @@ class StudentMainFrame(tk.Frame):
         logout_button = ttk.Button(self, text="LOG OUT", command=self.logout)
         logout_button.grid(row=3, column=0, columnspan=2, padx=10, pady=10, sticky="N")
 
-    def play(self):
-        """
-        Event handler if student is mid-unit
-        """
-        self.grid_forget()
-        if(self.current_student_progress.get_current_unit() == None):
-            unit_select_frame = UnitSelectFrame(self.master, self, self.current_user, self.current_student_progress)
-            unit_select_frame.grid(column=0, row=0, sticky="nsew")
-        else:
-            module_select_frame = ModuleSelectFrame(self.master, self, self.current_user, self.current_student_progress)
-            module_select_frame.grid(column=0, row=0, sticky="nsew")
     def logout(self):
         """
         Event handler to logout
@@ -87,6 +73,7 @@ class StudentMainFrame(tk.Frame):
         self.login_frame.grid(column=0, row=0, sticky="nsew")
         print(self.current_user.get_first_name() + " logged out")
         self.current_user.set_logged_out()
+        
 
 
 if __name__ == "__main__":

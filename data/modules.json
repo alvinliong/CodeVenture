@@ -1,8 +1,17 @@
 [
   {
     "module_title": "Python Overview",
-    "module_code": "1.1",
-    "content": "content",
-    "questions": []
+    "module_code": 1.1,
+    "content": "Python was created in 1990 by Guido van Rossum in Holland.\r\n\r\nOne of the objectives of the language was to be accessible to non-programmers.\r\n\r\nPython was also designed to be a second language for programmers to learn due to its low learning curve and ease of use.\r\n\r\nPython runs on Mac, Linux, Windows, and many other platforms."
+  },
+  {
+    "module_title": "Python Characteristics",
+    "module_code": 1.2,
+    "content": "Python is:\r\n\r\nInterpreted: it can execute at runtime, and changes in a program are instantly perceptible. To be very technical, Python has a compiler. The difference when compared to Java or C++ is how transparent and automatic it is. With Python, we don't have to worry about the compilation step as it's done in real-time. The tradeoff is that interpreted languages are usually slower than compiled ones.\r\n\r\nSemantically Dynamic: you don't have to specify types for variables and there is nothing that makes you do it.\r\n\r\nObject-Oriented: everything in Python is an object. But you can choose to write code in an object-oriented, procedural, or even functional way.\r\n\r\nHigh level: you don't have to deal with low-level machine details."
+  },
+  {
+    "module_title": "Python Uses ",
+    "module_code": 1.3,
+    "content": "Python has been growing a lot recently partly because of its many uses in the following areas:\r\n\r\nSystem scripting: it's a great tool to automate everyday repetitive tasks.\r\n\r\nData Analysis: it is a great language to experiment with and has tons of libraries and tools to handle data, create models, visualize results and even deploy solutions. This is used in areas like Finance, E-commerce, and Research.\r\n\r\nWeb Development: frameworks like Django and Flask allow the development of web applications, API's, and websites.\r\n\r\nMachine Learning: Tensorflow and Pytorch are some of the libraries that allow scientists and the industry to develop and deploy Artificial Intelligence solutions in Image Recognition, Health, Self-driving cars, and many other fields."
   }
 ]

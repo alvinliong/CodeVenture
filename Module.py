@@ -8,15 +8,31 @@ class Module():
     def __init__(self,
                  module_title,
                  module_code,
-                 content,
-                 questions):
+                 content):
         """
         Constructor for the Module class.
         """
         self.module_title = module_title
         self.module_code = module_code
         self.content = content
-        self.questions = questions
+
+    def get_module_title(self):
+        return self.module_title
+
+    def set_module_title(self, module_title):
+        self.module_title = module_title
+
+    def get_module_code(self):
+        return self.module_code
+
+    def set_module_code(self, module_code):
+        self.module_code = module_code
+
+    def get_content(self):
+        return self.content
+
+    def set_content(self, content):
+        self.content = content
 
 
 if __name__ == "__main__":

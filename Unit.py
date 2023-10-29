@@ -8,13 +8,32 @@ class Unit():
     def __init__(self,
                  unit_title,
                  unit_code,
-                 no_of_modules):
+                 modules):
         """
         Constructor for the Unit class.
         """
         self.unit_title = unit_title
         self.unit_code = unit_code
-        self.no_of_modules = no_of_modules
+        self.modules = modules
+
+    
+    def get_unit_title(self):
+        return self.unit_title
+
+    def set_unit_title(self, unit_title):
+        self.unit_title = unit_title
+
+    def get_unit_code(self):
+        return self.unit_code
+
+    def set_unit_code(self, unit_code):
+        self.unit_code = unit_code
+
+    def get_modules(self):
+        return self.modules
+
+    def set_modules(self, modules):
+        self.modules = modules
 
 
 if __name__ == "__main__":

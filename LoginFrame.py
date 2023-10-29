@@ -1,6 +1,7 @@
 
 # Third party imports
 import tkinter as tk
+from tkinter import ttk
 
 # Local application imports
 from Database import *
@@ -19,43 +20,50 @@ class LoginFrame(tk.Frame):
         """
         super().__init__(master=master)
         self.master = master
-        self.configure(background="blue")
-        self.grid_rowconfigure(0, weight=1)
-        self.grid_columnconfigure(0, weight=1)
+
+        # configure rows and columns
+        self.rowconfigure(0, weight=1)
+        self.rowconfigure(1, weight=1)
+        self.rowconfigure(2, weight=1)
+        self.rowconfigure(3, weight=1)
+            
+
+        for column_count in range(2):
+            self.columnconfigure(column_count, weight=1)
 
         # Label containing the welcome heading
-        login_title = tk.Label(master=self,
+        login_title = ttk.Label(master=self,
                                text="Code Venture",
                                font=("Arial Bold", 25))
-        login_title.grid(row=1, columnspan=2, padx=10, pady=10, sticky="nsew")
+        login_title.grid(row=0, columnspan=2, padx=10, pady=10, sticky="S")
 
         # Label to ask user for Username
-        username_label = tk.Label(master=self, text="Username:")
-        username_label.grid(row=2, column=0, sticky=tk.E, padx=10, pady=10)
+        username_label = ttk.Label(master=self, text="Username:")
+        username_label.grid(row=1, column=0, sticky="SE", padx=10, pady=10)
 
         # Variable and entry for username
         self.username = tk.StringVar()
-        self.username_entry = tk.Entry(master=self, textvariable=self.username)
-        self.username_entry.grid(row=2, column=1, sticky=tk.W, padx=10, pady=10)
+        self.username_entry = ttk.Entry(master=self, textvariable=self.username)
+        self.username_entry.grid(row=1, column=1, sticky="SW", padx=10, pady=10)
 
         # Label to ask user for Password
-        password_label = tk.Label(master=self, text="Password:")
-        password_label.grid(row=3, column=0, sticky=tk.E, padx=10, pady=10)
+        password_label = ttk.Label(master=self, text="Password:")
+        password_label.grid(row=2, column=0, sticky="NE", padx=10, pady=10)
 
         # Variable and entry to password
         self.password = tk.StringVar()
-        self.password_entry = tk.Entry(master=self, textvariable=self.password,
+        self.password_entry = ttk.Entry(master=self, textvariable=self.password,
                                   show="●")
-        self.password_entry.grid(row=3, column=1, sticky=tk.W, padx=10, pady=10)
+        self.password_entry.grid(row=2, column=1, sticky="NW", padx=10, pady=10)
 
         # Button to login
-        login_button = tk.Button(master=self, text="Login",
+        login_button = ttk.Button(master=self, text="Login",
                                  command=self.Login)
-        login_button.grid(row=4, columnspan=2, padx=10, pady=10)
+        login_button.grid(row=3, columnspan=2, padx=10, pady=10, sticky="N")
 
         # Variable and label to inform user of login outcome
         self.login_text = tk.StringVar()
-        login_message = tk.Label(master=self, textvariable=self.login_text)
+        login_message = ttk.Label(master=self, textvariable=self.login_text)
         # Alternatively, you may use Message widget,
         # but width must be wide enough
         # login_message = tk.Message(master=self,
@@ -95,11 +103,11 @@ class LoginFrame(tk.Frame):
 
         if (current_user != None):
             # Hide the login frame
-            self.place_forget()
+            self.grid_forget()
             if(current_user.get_user_type() == "student"):
                 # Create and display the Student login frame
                 student_main_frame = StudentMainFrame(self.master, self, current_user, current_student_progress)
-                student_main_frame.place(relx=0.5, rely=0.5, anchor=tk.CENTER)
+                student_main_frame.grid(column=0, row=0, sticky="nsew")
             elif (current_user.get_user_type() == "teacher"):
                 print("teacher logged in")
         else:

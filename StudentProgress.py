@@ -39,6 +39,10 @@ class StudentProgress:
 
     def get_modules_completed(self):
         return self.modules_completed
+    
+    def add_modules_completed(self, module_code):
+        if(module_code not in self.modules_completed):
+            self.modules_completed.append(module_code)
 
     def reset_modules_completed(self):
         self.modules_completed = []
