@@ -1,71 +1,65 @@
 [
-  {
-    "user_type": "student",
-    "first_name": "Alvin",
-    "last_name": "Liong",
-    "email": "alvinlliong@gmail.com",
-    "phone_number": "0414361797",
-    "date_of_birth": "08/06/2004",
-    "username": "alvinl",
-    "password": "password"
-  },
-  {
-    "user_type": "student",
-    "first_name": "Sithika",
-    "last_name": "Mannakara",
-    "email": "sithika@gmail.com",
-    "phone_number": "",
-    "date_of_birth": "08/06/2005",
-    "username": "sithikam",
-    "password": "password"
-  },
-  {
-    "user_type": "teacher",
-    "first_name": "kai",
-    "last_name": "lkjsfja",
-    "email": "kai@gmail.com",
-    "phone_number": "0232313123",
-    "date_of_birth": "08/06/2004",
-    "username": "kaim",
-    "password": "password"
-  },
-  {
-    "user_type": "student",
-    "first_name": "sithika",
-    "last_name": "mannakkara",
-    "email": "sithikamm@gmail.com",
-    "phone_number": "0404457574",
-    "date_of_birth": "10/12/2004",
-    "username": "SithikaM",
-    "password": "password"
-  },
-  {
-    "user_type": "teacher",
-    "first_name": "Teacher",
-    "last_name": "2",
-    "email": "t4eacher@gmail.com",
-    "phone_number": "",
-    "date_of_birth": "08/02/23232",
-    "username": "teacher2",
-    "password": "password"
-  },
-  {
-    "user_type": "teacher",
-    "first_name": "Test",
-    "last_name": "Teacher",
-    "email": "tt@gmail.com",
-    "phone_number": "",
-    "date_of_birth": "",
-    "username": "tteacher",
-    "password": "password"
-  },
-  {
-    "first_name": "Jemima",
-    "last_name": "Larkins",
-    "email": "jemimal@gmail.com",
-    "phone_number": "",
-    "date_of_birth": "16/12/2004",
-    "username": "jemimal",
-    "password": "password"
-  }
+    {
+        "first_name": "Alvin",
+        "last_name": "Liong",
+        "email": "alvinlliong@gmail.com",
+        "phone_number": "0414361797",
+        "date_of_birth": "08/06/2004",
+        "username": "alvinl",
+        "password": "password"
+    },
+    {
+        "first_name": "Sithika",
+        "last_name": "Mannakara",
+        "email": "sithika@gmail.com",
+        "phone_number": "",
+        "date_of_birth": "08/06/2005",
+        "username": "sithikam",
+        "password": "password"
+    },
+    {
+        "first_name": "sithika",
+        "last_name": "mannakkara",
+        "email": "sithikamm@gmail.com",
+        "phone_number": "0404457574",
+        "date_of_birth": "10/12/2004",
+        "username": "SithikaM",
+        "password": "password"
+    },
+    {
+        "first_name": "kai",
+        "last_name": "lkjsfja",
+        "email": "kai@gmail.com",
+        "phone_number": "0232313123",
+        "date_of_birth": "08/06/2004",
+        "username": "kaim",
+        "password": "password"
+    },
+    {
+        "first_name": "Teacher",
+        "last_name": "2",
+        "email": "t4eacher@gmail.com",
+        "phone_number": "",
+        "date_of_birth": "08/02/23232",
+        "username": "teacher2",
+        "password": "password"
+    },
+    {
+        "first_name": "Test",
+        "last_name": "Teacher",
+        "email": "tt@gmail.com",
+        "phone_number": "",
+        "date_of_birth": "",
+        "username": "tteacher",
+        "password": "password"
+    },
+    {
+        "first_name": "Jemima",
+        "last_name": "Larkins",
+        "email": "jemimal@gmail.com",
+        "phone_number": "",
+        "date_of_birth": "16/12/2004",
+        "username": "jemimal",
+        "password": "password"
+    }
 ]

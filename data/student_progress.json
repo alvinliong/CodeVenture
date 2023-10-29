@@ -1,26 +1,30 @@
 [
-  {
-    "username": "alvinl",
-    "units_completed": [],
-    "current_unit": 1,
-    "modules_completed": [1.1, 1.2, 1.3],
-    "current_module": null,
-    "quizzes_completed": []
-  },
-  {
-    "username": "sithikam",
-    "units_completed": [],
-    "current_unit": null,
-    "modules_completed": [],
-    "current_module": null,
-    "quizzes_completed": []
-  },
-  {
-    "username": "SithikaM",
-    "units_completed": [],
-    "current_unit": null,
-    "modules_completed": [],
-    "current_module": null,
-    "quizzes_completed": []
-  }
+    {
+        "username": "alvinl",
+        "units_completed": [],
+        "current_unit": 1,
+        "modules_completed": [
+            1.1,
+            1.2,
+            1.3
+        ],
+        "current_module": null,
+        "quizzes_completed": []
+    },
+    {
+        "username": "sithikam",
+        "units_completed": [],
+        "current_unit": null,
+        "modules_completed": [],
+        "current_module": null,
+        "quizzes_completed": []
+    },
+    {
+        "username": "SithikaM",
+        "units_completed": [],
+        "current_unit": null,
+        "modules_completed": [],
+        "current_module": null,
+        "quizzes_completed": []
+    }
 ]
