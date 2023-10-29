@@ -69,7 +69,7 @@ class LoginFrame(tk.Frame):
         # login_message = tk.Message(master=self,
         #                            textvariable=self.login_text,
         #                            width=150)
-        login_message.grid(row=5, columnspan=2, padx=10, pady=10)
+        login_message.grid(row=4, columnspan=2, padx=10, pady=10)
 
     def Login(self):
         """
