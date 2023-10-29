@@ -77,6 +77,7 @@ class ModuleFrame(tk.Frame):
         self.module_select_frame.grid(column=0, row=0, sticky="nsew")
         self.current_student_progress.add_modules_completed(module_code)
         write_all_databases()
+        read_all_databases()
         
 
 
