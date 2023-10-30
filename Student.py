@@ -1,10 +1,11 @@
 """
-
+File: Student.py
+Description: This file is Student Class
+Author: CodeVenture Team G13 
 """
 
 from User import User
 from StudentProgress import StudentProgress
-
 
 class Student(User):
 

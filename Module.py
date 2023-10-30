@@ -1,7 +1,8 @@
 """
-
+File: Module.py
+Description: This file is the Module class
+Author: CodeVenture Team G13 
 """
-
 
 class Module():
 

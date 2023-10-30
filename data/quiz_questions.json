@@ -1,0 +1,80 @@
+[
+  {
+    "question_code": 1.1,
+    "question_type": "multiple_choice",
+    "question_content": "What year was python created in?\n\nA. 1990\n B. 2004\nC. 2008\nD. 1993",
+    "question_answer": "A"
+  },
+  {
+    "question_code": 1.2,
+    "question_type": "free_form",
+    "question_content": "What country was python created in?",
+    "question_answer": "holland"
+  },
+  {
+    "question_code": 1.3,
+    "question_type": "multiple_choice",
+    "question_content": "Which of the following is python NOT used for?\n\nA. Data Analysis\nB. System Scripting\nC. Nuclear Warfare\nD. Web Development",
+    "question_answer": "C"
+  },
+  {
+    "question_code": 2.1,
+    "question_type": "multiple_choice",
+    "question_content": "Which of the following operating systems does NOT come with Python already installed?\r\n\r\nA. Mac\r\nB. Windows\r\nC. Linux\r\nD. None of the above",
+    "question_answer": "B"
+  },
+  {
+    "question_code": 2.2,
+    "question_type": "multiple_choice",
+    "question_content": "Which app do you need to install from the App Store for Python installation on a Mac?\r\n\r\nA. Flappy Bird\r\nB. ZCode\r\nC. Final Cut Pro X\r\nD. XCode",
+    "question_answer": "D"
+  },
+  {
+    "question_code": 3.1,
+    "question_type": "free_form",
+    "question_content": "Enter code to perform the calcualation '2 plus 2'. Remember to add spaces between operators and numbers.",
+    "question_answer": "2 + 2"
+  },
+  {
+    "question_code": 3.2,
+    "question_type": "free_form",
+    "question_content": "Enter code to exit a python code while it is running.",
+    "question_answer": "exit()"
+  },
+  {
+    "question_code": 3.3,
+    "question_type": "multiple_choice",
+    "question_content": "What file extension do python files use?\r\n\r\nA. .py\r\nB. .exe\r\nC. .app\r\nD. .python",
+    "question_answer": "A"
+  },
+  {
+    "question_code": 3.4,
+    "question_type": "multiple_choice",
+    "question_content": "What is the output from the follwing python code:\r\n\r\nprint('Hello World!')\r\n\r\nA. 'Hello World!'\r\nB. Hello World!\r\nC. hello world\r\nD. helloworld",
+    "question_answer": "B"
+  },
+  {
+    "question_code": 4.1,
+    "question_type": "multiple_choice",
+    "question_content": "What symbol is used to signify the end of a line of code in Python?\r\n\r\nA. a semicolon (;)\r\nB. a colon (:)\r\nC. a full stop(.)\r\nD. nothing",
+    "question_answer": "D"
+  },
+  {
+    "question_code": 4.2,
+    "question_type": "multiple_choice",
+    "question_content": "What will the output be for the following piece of code?\r\n\r\ndef my_function():\r\nprint('First command')\r\n\r\nA. 'First command'\r\nB. First command\r\nC. An error will output\r\nD. print(\"first command\")\r\n",
+    "question_answer": "C"
+  },
+  {
+    "question_code": 4.3,
+    "question_type": "free_form",
+    "question_content": "Enter the starting character of a line that will signify a comment in Python.",
+    "question_answer": "#"
+  },
+  {
+    "question_code": 4.4,
+    "question_type": "multiple_choice",
+    "question_content": "Which of the following operators will assign a value to a variable?\r\n\r\nA. ==\r\nB. ->\r\nC. <-\r\nD. =",
+    "question_answer": "D"
+  }
+]

@@ -1,7 +1,8 @@
 """
-
+File: StudentMainFrame.py
+Description: This file is the GUI for the StudentMainFrame
+Author: CodeVenture Team G13 
 """
-
 # Third party imports
 import tkinter as tk
 from tkinter import ttk
@@ -10,6 +11,7 @@ from tkinter import ttk
 from Database import *
 from ModuleSelectFrame import ModuleSelectFrame
 from UnitSelectFrame import UnitSelectFrame
+from ProgressFrame import ProgressFrame
 
 
 class StudentMainFrame(tk.Frame):
@@ -53,7 +55,7 @@ class StudentMainFrame(tk.Frame):
         play_button.grid(row=1, column=0, padx=10, pady=10, sticky="SE")
 
         # The view progress button
-        progress_button = ttk.Button(self, text="PROGRESS")
+        progress_button = ttk.Button(self, text="PROGRESS", command=self.progress)
         progress_button.grid(row=1, column=1, padx=10, pady=10, sticky="SW")
 
         # The forum button
@@ -68,11 +70,18 @@ class StudentMainFrame(tk.Frame):
         logout_button = ttk.Button(self, text="LOG OUT", command=self.logout)
         logout_button.grid(row=3, column=0, columnspan=2, padx=10, pady=10, sticky="N")
 
-    def play(self):
+    def progress(self):
         """
-        Event handler if student is mid-unit
+        Event handler to view progress
         """
         self.grid_forget()
+        progress_frame = ProgressFrame(self.master, self, self.current_user, self.current_student_progress)
+        progress_frame.grid(column=0, row=0, sticky="nsew")
+        
+    def play(self):
+        """
+        Event handler if student to play
+        """
         if(self.current_student_progress.get_current_unit() == None):
             unit_select_frame = UnitSelectFrame(self.master, self, self.current_user, self.current_student_progress)
             unit_select_frame.grid(column=0, row=0, sticky="nsew")
@@ -80,13 +89,15 @@ class StudentMainFrame(tk.Frame):
             module_select_frame = ModuleSelectFrame(self.master, self, self.current_user, self.current_student_progress)
             module_select_frame.grid(column=0, row=0, sticky="nsew")
     def logout(self):
+        from LoginFrame import LoginFrame
         """
         Event handler to logout
         """
         self.grid_forget()
-        self.login_frame.grid(column=0, row=0, sticky="nsew")
+        LoginFrame = LoginFrame(self.master, "")
+        LoginFrame.grid(column=0, row=0, sticky="nsew")
         print(self.current_user.get_first_name() + " logged out")
-        self.current_user.set_logged_out()
+        self.current_user = None
 
 
 if __name__ == "__main__":

@@ -13,5 +13,60 @@
     "module_title": "Python Uses ",
     "module_code": 1.3,
     "content": "Python has been growing a lot recently partly because of its many uses in the following areas:\r\n\r\nSystem scripting: it's a great tool to automate everyday repetitive tasks.\r\n\r\nData Analysis: it is a great language to experiment with and has tons of libraries and tools to handle data, create models, visualize results and even deploy solutions. This is used in areas like Finance, E-commerce, and Research.\r\n\r\nWeb Development: frameworks like Django and Flask allow the development of web applications, API's, and websites.\r\n\r\nMachine Learning: Tensorflow and Pytorch are some of the libraries that allow scientists and the industry to develop and deploy Artificial Intelligence solutions in Image Recognition, Health, Self-driving cars, and many other fields."
+  },
+  {
+    "module_title": "Checking Python Installation",
+    "module_code": 2.1,
+    "content": "If you use a Mac or Linux you already have Python installed. But Windows doesn't come with Python installed by default.\r\n\r\nYou also might have Python 2, and we are going to use Python 3. So you should check to see if you have Python 3 first.\r\n\r\nType the following in your terminal.\r\n\r\npython3 -V\r\nNotice the uppercase V.\r\n\r\nIf your result is something similar to 'Python 3.x.y', for instance, Python 3.8.1, then you are ready to go.\r\n\r\nIf not, follow the next instructions according to your Operating System."
+  },
+  {
+    "module_title": "Installing Python on Windows",
+    "module_code": 2.2,
+    "content": "Installing Python 3 on Windows\r\nGo to https://www.python.org/downloads/.\r\n\r\nDownload the latest version.\r\n\r\nAfter the download, double-click the installer.\r\n\r\nOn the first screen, check the box indicating to \"Add Python 3.x to PATH\" and then click on \"Install Now\".\r\n\r\nWait for the installation process to finish until the next screen with the message \"Setup was successful\".\r\n\r\nClick on \"Close\"."
+  },
+  {
+    "module_title": "Installing Python on Windows",
+    "module_code": 2.3,
+    "content": "Install XCode from the App Store.\r\n\r\nInstall the command line tools by running the following in your terminal.\r\n\r\nxcode-select --install\r\nI recommend using Homebrew. Go to https://brew.sh/ and follow the instructions on the first page to install it.\r\n\r\nAfter installing Homebrew, run the following brew commands to install Python 3.\r\n\r\nbrew update\r\nbrew install python3\r\nHomebrew already adds Python 3 to the PATH, so you don't have to do anything else."
+  },
+  {
+    "module_title": "Installing Python on Linux",
+    "module_code": 2.4,
+    "content": "To install using apt, available in Ubuntu and Debian, enter the following:\r\n\r\nsudo apt install python3\r\nTo install using yum, available in RedHat and CentOS, enter the following:\r\n\r\nsudo yum install python3"
+  },
+  {
+    "module_title": "Running Code in Terminal",
+    "module_code": 3.1,
+    "content": "You can run Python code directly in the terminal as commands or you can save the code in a file with the .py extension and run the Python file.\r\n\r\nTerminal\r\nRunning commands directly in the terminal is recommended when you want to run something simple.\r\n\r\nOpen the command line and type python3\r\n\r\nrenan@mypc:~$ python3\r\nYou should see something like this in your terminal indicating the version (in my case, Python 3.6.9), the operating system (I'm using Linux), and some basic commands to help you.\r\n\r\nThe >>> tells us we are in the Python console.\r\n\r\nPython 3.6.9 (default, Nov  7 2019, 10:44:02) \r\n[GCC 8.3.0] on linux\r\nType \"help\", \"copyright\", \"credits\" or \"license\" for more information.\r\n>>>"
+  },
+  {
+    "module_title": "Running your first Python Command",
+    "module_code": 3.2,
+    "content": "Let's test it by running our first program to perform basic math and add two numbers.\r\n\r\n>>> 2 + 2\r\nThe output is:\r\n\r\n4\r\nTo exit the Python console simply type exit().\r\n\r\n>>> exit()"
+  },
+  {
+    "module_title": "Running .py file",
+    "module_code": 3.3,
+    "content": "If you have a complex program, with many lines of code, the Python console isn't the best option.\r\n\r\nThe alternative is simply to open a text editor, type the code, and save the file with a .py extension.\r\n\r\nLet's do that, create a file called second_program.py with the following content.\r\n\r\nprint('Second Program')\r\nThe print() function prints a message on the screen.\r\n\r\nThe message goes inside the parentheses with either single quotes or double quotes, both work the same.\r\n\r\nTo run the program, on your terminal do the following:\r\n\r\nrenan@mypc:~$ python3 second_program.py\r\nThe output is:\r\n\r\nSecond Program"
+  },
+  {
+    "module_title": "Semicolons",
+    "module_code": 4.1,
+    "content": "Python is known for its clean syntax.\r\n\r\nThe language avoids using unnecessary characters to indicate some specificity.\r\n\r\nPython doesn't use semicolons to finish lines. A new line is enough to tell the interpreter that a new command is beginning.\r\n\r\nThe print() method will display something.\r\n\r\nIn this example, we have two commands that will display the messages inside the single quotes.\r\n\r\nprint('First command')\r\nprint('Second command')\r\nOutput:\r\n\r\nFirst command\r\nSecond command\r\nBut the following is wrong due to the semicolons in the end:\r\n\r\nprint('First command');\r\nprint('Second command');"
+  },
+  {
+    "module_title": "Indentation",
+    "module_code": 4.2,
+    "content": "Many languages use curly-brackets to define scope.\r\n\r\nPython's interpreter uses only indentation to define when a scope ends and another one starts.\r\n\r\nThis means you have to be aware of white spaces at the beginning of each line -- they have meaning and might break your code if misplaced.\r\n\r\nThis definition of a function works:\r\n\r\ndef my_function():\r\n    print('First command')\r\nThis doesn't work because the indentation of the second line is missing and will throw an error:\r\n\r\ndef my_function():\r\nprint('First command')"
+  },
+  {
+    "module_title": "Case sensitivity and variables",
+    "module_code": 4.3,
+    "content": "Python is case sensitive. So the variables name and Name are not the same thing and store different values.\r\n\r\nname = 'Renan'\r\nName = 'Moura'\r\nAs you can see, variables are easily created by just assigning values to them using the = symbol.\r\n\r\nThis means name stores 'Renan' and Name stores 'Moura'."
+  },
+  {
+    "module_title": "Comments",
+    "module_code": 4.4,
+    "content": "Finally, to comment something in your code, use the hash mark #.\r\n\r\nThe commented part does not influence the program flow.\r\n\r\n# this function prints something\r\ndef my_function():\r\n    print('First command')\r\nThis was just an overview. The details of each of these will become clearer in the next chapters with examples and broader explanations."
   }
 ]

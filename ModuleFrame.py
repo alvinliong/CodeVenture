@@ -1,5 +1,7 @@
 """
-
+File: ModuleFrame.py
+Description: This file is the GUI for the ModuleFrame
+Author: CodeVenture Team G13 
 """
 
 # Third party imports
@@ -14,13 +16,14 @@ class ModuleFrame(tk.Frame):
     The class definition for the ModuleFrame class.
     """
 
-    def __init__(self, master, module_select_frame, module, current_user, current_student_progress):
+    def __init__(self, master, module_select_frame, module, student_main_frame, current_user, current_student_progress):
         """
         The constructor for the ModuleFrame class
         """
         super().__init__(master)
         self.master = master
         self.module = module
+        self.student_main_frame = student_main_frame
         self.module_select_frame = module_select_frame
         self.current_user = current_user
         self.current_student_progress = current_student_progress
@@ -60,24 +63,20 @@ class ModuleFrame(tk.Frame):
         complete_button = ttk.Button(self, text="FINISH MODULE", command=self.complete)
         complete_button.grid(row=2, column=0, columnspan=2, padx=10, pady=10, sticky="N")
 
-    def module(self):
-        """
-        Event handler to back
-        """
-        self.grid_forget()
-        module_frame = ModuleFrame()
-        self.module_frame.grid(column=0, row=0, sticky="nsew")
 
     def complete(self):
+        from ModuleSelectFrame import ModuleSelectFrame
         """
         Event handler to complete module
         """
         module_code = self.module.get_module_code()
-        self.grid_forget()
-        self.module_select_frame.grid(column=0, row=0, sticky="nsew")
         self.current_student_progress.add_modules_completed(module_code)
         write_all_databases()
-        read_all_databases()
+        self.grid_forget()
+        self.module_select_frame.destroy()
+        self.module_select_frame = ModuleSelectFrame(self.master, self.student_main_frame, self.current_user, self.current_student_progress)
+        self.module_select_frame.grid(column=0, row=0, sticky="nsew")
+        
         
 
 

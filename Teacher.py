@@ -1,9 +1,9 @@
 """
-
+File: Teacher.py
+Description: This file is Teacher Class
+Author: CodeVenture Team G13 
 """
-
 from User import User
-
 
 class Teacher(User):
 

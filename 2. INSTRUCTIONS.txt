@@ -1,0 +1,4 @@
+The following modules need to be installed on your computer.
+
+- ttk (Themed Tkinter)
+- functools (if not installed already; it should be already)

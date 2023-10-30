@@ -1,4 +1,8 @@
-
+"""
+File: LoginFrame.py
+Description: This file is the login frame
+Author: CodeVenture Team G13 
+"""
 # Third party imports
 import tkinter as tk
 from tkinter import ttk
@@ -6,13 +10,15 @@ from tkinter import ttk
 # Local application imports
 from Database import *
 from StudentMainFrame import StudentMainFrame
+from RegisterFrame import RegisterFrame
+from ForgotPasswordFrame import ForgotPasswordFrame
 
 class LoginFrame(tk.Frame):
     """
     The class definition for the LoginFrame class.
     """
 
-    def __init__(self, master):
+    def __init__(self, master, login_text):
         """
         Constructor for the LoginFrame class.
         :param master: Tk object; the main window that the
@@ -26,6 +32,9 @@ class LoginFrame(tk.Frame):
         self.rowconfigure(1, weight=1)
         self.rowconfigure(2, weight=1)
         self.rowconfigure(3, weight=1)
+        self.rowconfigure(4, weight=1)
+        self.rowconfigure(5, weight=1)
+        self.rowconfigure(6, weight=1)
             
 
         for column_count in range(2):
@@ -59,17 +68,23 @@ class LoginFrame(tk.Frame):
         # Button to login
         login_button = ttk.Button(master=self, text="Login",
                                  command=self.Login)
-        login_button.grid(row=3, columnspan=2, padx=10, pady=10, sticky="N")
+        login_button.grid(row=3, columnspan=2, padx=10, pady=10, sticky="S")
+
+        # Button to register
+        register_button = ttk.Button(master=self, text="Register a new account",
+                                 command=self.Register)
+        register_button.grid(row=4, columnspan=2, padx=10, pady=10, sticky="N")
+
+        # Button to forgot password
+        forgot_password_button = ttk.Button(master=self, text="Forgot password?",
+                                 command=self.ForgotPassword, state="disabled")
+        forgot_password_button.grid(row=5, columnspan=2, padx=10, pady=10, sticky="N")
 
         # Variable and label to inform user of login outcome
         self.login_text = tk.StringVar()
+        self.login_text.set(login_text)
         login_message = ttk.Label(master=self, textvariable=self.login_text)
-        # Alternatively, you may use Message widget,
-        # but width must be wide enough
-        # login_message = tk.Message(master=self,
-        #                            textvariable=self.login_text,
-        #                            width=150)
-        login_message.grid(row=4, columnspan=2, padx=10, pady=10)
+        login_message.grid(row=6, columnspan=2, padx=10, pady=10)
 
     def Login(self):
         """
@@ -82,13 +97,11 @@ class LoginFrame(tk.Frame):
         current_user = None
         current_student_progress = None
 
-
         username = self.username.get()
         password = self.password.get()
 
         for student in students_database:
             if (student.get_username() == username and student.get_password() == password):
-                student.set_logged_in()
                 current_user = student
                 for progress in student_progress_database:
                     if progress.get_username() == username:
@@ -98,12 +111,13 @@ class LoginFrame(tk.Frame):
 
         for teacher in teachers_database:
             if (teacher.get_username() == username and teacher.get_password() == password):
-                teacher.set_logged_in()
                 current_user = teacher
 
         if (current_user != None):
             # Hide the login frame
-            self.grid_forget()
+            self.username.set("")
+            self.password.set("")
+            self.destroy()
             if(current_user.get_user_type() == "student"):
                 # Create and display the Student login frame
                 student_main_frame = StudentMainFrame(self.master, self, current_user, current_student_progress)
@@ -111,8 +125,25 @@ class LoginFrame(tk.Frame):
             elif (current_user.get_user_type() == "teacher"):
                 print("teacher logged in")
         else:
-            print("Username or password is incorrect!")
+            self.login_text.set("Account details are incorrect!")
 
+    def Register(self):
+        """
+        This function runs the main logic for register page
+        :return: None
+        """
+        self.grid_forget()
+        register_frame = RegisterFrame(self.master, self)
+        register_frame.grid(column=0, row=0, sticky="nsew")
+
+    def ForgotPassword(self):
+        """
+        This function runs the main logic for forgot password page
+        :return: None
+        """
+        self.grid_forget()
+        forgot_password_frame = ForgotPasswordFrame(self.master, self)
+        forgot_password_frame.grid(column=0, row=0, sticky="nsew")
 
 if __name__ == "__main__":
     # Feel free to amend this block while working or testing,

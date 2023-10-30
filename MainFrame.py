@@ -1,3 +1,8 @@
+"""
+File: MainFrame.py
+Description: This file is the main frame. # Run this file to start the program
+Author: CodeVenture Team G13 
+"""
 # Third party imports
 import tkinter as tk
 from tkinter import ttk
@@ -22,7 +27,7 @@ class MainFrame(tk.Tk):
         self.geometry(f"{width}x{height}")
         self.grid_rowconfigure(0, weight=1)
         self.grid_columnconfigure(0, weight=1)
-        # self.resizable(False,False)
+        # self.resizable(xFalse,False)
     
         style = ttk.Style(self)
         style.theme_use("aqua")
@@ -30,7 +35,7 @@ class MainFrame(tk.Tk):
         
 if __name__ == "__main__":
     MainFrame = MainFrame("Code Venture")
-    LoginFrame = LoginFrame(MainFrame)
+    LoginFrame = LoginFrame(MainFrame, "")
     LoginFrame.grid(column=0, row=0, sticky="nsew")
     LoginFrame.mainloop()
     print("--- End of program execution ---")

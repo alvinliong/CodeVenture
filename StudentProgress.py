@@ -1,14 +1,15 @@
 """
-
+File: StudentProgress.py
+Description: This file is StudentProgress Class
+Author: CodeVenture Team G13 
 """
-
 
 class StudentProgress:
     """
     This is the class definition for the Student Progress class.
     """
 
-    def __init__(self, username, units_completed, current_unit, modules_completed, current_module, quizzes_completed):
+    def __init__(self, username, units_completed, current_unit, modules_completed):
         """
         Constructor method for the Student Progress class
         """
@@ -16,14 +17,12 @@ class StudentProgress:
         self.units_completed = units_completed
         self.current_unit = current_unit
         self.modules_completed = modules_completed
-        self.current_module = current_module
-        self.quizzes_completed = quizzes_completed
 
     def get_username(self):
         return self.username
 
     def update_units_completed(self, unit):
-        self.units_completed.append = unit
+        self.units_completed.append(unit)
 
     def get_units_completed(self):
         return self.units_completed
@@ -35,7 +34,7 @@ class StudentProgress:
         return self.current_unit
 
     def update_modules_completed(self, module):
-        self.modules_completed.append = module
+        self.modules_completed.append(module)
 
     def get_modules_completed(self):
         return self.modules_completed
@@ -52,12 +51,6 @@ class StudentProgress:
 
     def get_current_module(self):
         return self.current_module
-
-    def set_current_quiz(self, quiz):
-        self.current_quiz = quiz
-
-    def get_current_quiz(self):
-        return self.current_quiz
 
 
 if __name__ == "__main__":

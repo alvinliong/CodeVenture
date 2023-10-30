@@ -11,6 +11,7 @@ from Teacher import Teacher
 from StudentProgress import StudentProgress
 from Unit import Unit
 from Module import Module
+from QuizQuestion import QuizQuestion
 
 def read_all_databases():
     """
@@ -22,6 +23,7 @@ def read_all_databases():
     read_modules_database()
     read_units_database()
     read_student_progress_database()
+    read_quiz_database()
 
 def write_all_databases():
     """
@@ -101,14 +103,13 @@ def write_user_database():
     path = "./data/users.json"
 
     users_database = students_database + teachers_database
+    print(users_database)
     users_dict = []
 
     # convert each object in users database to a dictionary, removing last item (logged in status)
     # and appending them to dictionary of users
     for user in users_database:
-        user_dict = user.__dict__
-        user_dict.popitem()
-        users_dict.append(user_dict)
+        users_dict.append(user.__dict__)
 
     # write to file
     file = open(path, "w", encoding="utf8")
@@ -138,15 +139,11 @@ def read_student_progress_database():
             units_completed = student["units_completed"]
             current_unit = student["current_unit"]
             modules_completed = student["modules_completed"]
-            current_module = student["current_module"]
-            quizzes_completed = student["quizzes_completed"]
 
             student_progress = StudentProgress(username,
                                                units_completed,
                                                current_unit,
-                                               modules_completed,
-                                               current_module,
-                                               quizzes_completed)
+                                               modules_completed)
             student_progress_database.append(student_progress)
 
         file.close()
@@ -236,5 +233,37 @@ def read_modules_database():
         print("Modules data loaded.")
     except FileNotFoundError:
         print("The modules data file does not exist!")
+
+def read_quiz_database():
+    """
+    Reads the data files and updates the global variables
+    :return: None
+
+    """
+    global quiz_database
+
+    quiz_database = []
+    path = "./data/quiz_questions.json"
+
+    try:
+        file = open(path, "r", encoding="utf8")
+        quiz_questions = json.load(file)
+
+        for question in quiz_questions:
+            question_code = question["question_code"]
+            question_type = question["question_type"]
+            question_content = question["question_content"]
+            question_answer = question["question_answer"]
+
+            question = QuizQuestion(question_code,
+                                question_type,
+                                question_content, 
+                                question_answer)
+            quiz_database.append(question)
+
+        file.close()
+        print("Quiz data loaded.")
+    except FileNotFoundError:
+        print("The quiz data file does not exist!")
 
 read_all_databases()

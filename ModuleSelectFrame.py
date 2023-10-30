@@ -1,5 +1,7 @@
 """
-
+File: ModuleFrame.py
+Description: This file is the GUI for the ModuleFrame
+Author: CodeVenture Team G13 
 """
 
 # Third party imports
@@ -10,6 +12,7 @@ from functools import partial
 # Local application imports
 from Database import *
 from ModuleFrame import ModuleFrame
+from QuizFrame import QuizFrame
 
 class ModuleSelectFrame(tk.Frame):
     """
@@ -27,29 +30,18 @@ class ModuleSelectFrame(tk.Frame):
         self.current_student_progress = current_student_progress
 
         # get current unit data
-        current_unit = self.current_student_progress.get_current_unit()
+        current_unit_code = self.current_student_progress.get_current_unit()
         for unit in units_database:
-            if (unit.get_unit_code() == current_unit):
-                current_unit = unit
-
-        # if the current unit has been found in the unit database
-        if (type(current_unit) is Unit):
-            print ("Unit found")
-        else:
-            print ("Unit not found")
+            if (unit.get_unit_code() == current_unit_code):
+                self.current_unit = unit
 
         # get the unit modules as objects
-        module_codes = current_unit.get_modules()
+        module_codes = self.current_unit.get_modules()
         modules = []
         for code in module_codes:
-            print(code)
             for module in modules_database:
-                print(module)
                 if code == module.get_module_code():
                     modules.append(module)
-        
-        for module in modules:
-            print(module.get_content() + "\n\n")
 
         # get the modules completed from the student progress
         modules_completed = self.current_student_progress.get_modules_completed()
@@ -59,7 +51,8 @@ class ModuleSelectFrame(tk.Frame):
         self.rowconfigure(1, weight=1)
         for row in range(2, len(modules)+1):
             self.rowconfigure(row, weight=0)
-        self.rowconfigure(len(modules)+2, weight=1)
+        self.rowconfigure(len(modules)+2, weight=0)
+        self.rowconfigure(len(modules)+3, weight=1)
 
         self.columnconfigure(0, weight=1)
         self.columnconfigure(1, weight=1)
@@ -76,6 +69,13 @@ class ModuleSelectFrame(tk.Frame):
                                font=("Helvetica Bold", 18))
         username_title.grid(row=0, column=1, columnspan=1, padx=10, pady=10, sticky="E")
 
+        # print current unit
+        current_unit_title = ttk.Label(master=self,
+                               text="Current Unit: " + str(self.current_unit.get_unit_code()) + ". " + self.current_unit.get_unit_title(),
+                               font=("Helvetica Bold", 18))
+        current_unit_title.grid(row=1, column=0, columnspan=2, padx=10, pady=10)
+
+        # print module buttons
         module_labels_dict = {}
         module_buttons_dict = {}
         row_count = 2
@@ -91,17 +91,29 @@ class ModuleSelectFrame(tk.Frame):
             module_labels_dict[module_title].grid(row=row_count, column=1, sticky="W", padx=10, pady=10)
             row_count += 1
 
+        # if user has completed all modules in the unit
+        if (sorted(modules_completed) == sorted(self.current_unit.get_modules())):
+            quiz_button = ttk.Button(self, text="ATTEMPT QUIZ", command=self.quiz)
+            quiz_button.grid(row=row_count+1, column=0, columnspan=2, padx=10, pady=10, sticky="N")
         # The back button
         back_button = ttk.Button(self, text="BACK TO MAIN MENU", command=self.back)
-        back_button.grid(row=row_count+1, column=0, columnspan=2, padx=10, pady=10, sticky="N")
+        back_button.grid(row=row_count+2, column=0, columnspan=2, padx=10, pady=10, sticky="N")
 
     def module(self, module):
         """
         Event handler to go to selected module
         """
         self.grid_forget()
-        module_frame = ModuleFrame(self.master, self, module, self.current_user, self.current_student_progress)
+        module_frame = ModuleFrame(self.master, self, module, self.student_main_frame, self.current_user, self.current_student_progress)
         module_frame.grid(column=0, row=0, sticky="nsew")
+
+    def quiz(self):
+        """
+        Event handler to begin quiz
+        """
+        self.grid_forget()
+        quiz_frame = QuizFrame(self.master, self, self.student_main_frame, self.current_unit, self.current_user, self.current_student_progress)
+        quiz_frame.grid(column=0, row=0, sticky="nsew")
 
     def back(self):
         """

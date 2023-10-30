@@ -1,0 +1,18 @@
+Welcome to Code Venture!
+
+Several features are still under development and not working yet. We were not able to
+complete them due to time. Some buttons will be disabled as their features are not
+fully usable and hence disabled for this production version.
+
+The content for the Python course was taken from the following webiste:
+https://www.freecodecamp.org/news/the-python-guide-for-beginners/
+
+Usernames and passwords will be available in the users.json file in the /data folder.
+
+Currently, only student accounts can be used and created.
+
+The features that were in production but were not completed can be found in the /unused folder.
+
+
+
+To start the application, run the MainFrame.py file.
